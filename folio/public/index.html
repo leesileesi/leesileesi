@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Folio</title>
+  <meta name="description" content="A social network where your feed is a book.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#/" aria-label="Folio home">
+      <span class="brand-mark" aria-hidden="true">❦</span><span class="brand-name">Folio</span>
+    </a>
+    <nav class="nav" aria-label="Books">
+      <a href="#/mine" data-nav="mine">My Book</a>
+      <a href="#/commons" data-nav="commons">The Commons</a>
+      <a href="#/library" data-nav="library">Library</a>
+    </nav>
+    <div class="top-actions">
+      <button class="btn btn-ink" data-action="write" type="button">
+        <span aria-hidden="true">✒</span><span class="label">Write</span>
+      </button>
+      <button class="btn btn-ghost" data-action="account" type="button" id="accountBtn">Sign in</button>
+    </div>
+  </header>
+
+  <main id="stage" class="stage">
+    <section id="bookView" class="book-view" hidden>
+      <div class="book-wrap">
+        <div class="book" id="book">
+          <div class="stack stack-left" aria-hidden="true"></div>
+          <div class="stack stack-right" aria-hidden="true"></div>
+          <div class="page page-left as-left" id="pageLeft"></div>
+          <div class="page page-right as-right" id="pageRight"></div>
+          <div class="ribbon" id="ribbon" aria-hidden="true" hidden></div>
+          <button class="edge edge-prev" data-action="prev" type="button" aria-label="Previous page"></button>
+          <button class="edge edge-next" data-action="next" type="button" aria-label="Next page"></button>
+        </div>
+      </div>
+      <div class="controls">
+        <button class="ctl" data-action="prev" type="button" aria-label="Previous page">‹</button>
+        <button class="ctl ctl-text" data-action="contents" type="button">Contents</button>
+        <input type="range" id="scrubber" min="0" max="0" value="0" aria-label="Turn to page">
+        <span class="pageinfo" id="pageInfo"></span>
+        <button class="ctl ctl-text" data-action="latest" type="button">Latest</button>
+        <button class="ctl" data-action="next" type="button" aria-label="Next page">›</button>
+      </div>
+    </section>
+
+    <section id="libraryView" class="library-view" hidden></section>
+  </main>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+
+  <dialog id="modal" class="modal">
+    <form method="dialog" class="modal-close-form"><button class="modal-x" aria-label="Close">×</button></form>
+    <div id="modalBody"></div>
+  </dialog>
+
+  <!-- Off-screen page used to measure text while binding pages. -->
+  <div class="measure" aria-hidden="true"><div class="page as-right" id="measurePage"></div></div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
